@@ -2,9 +2,11 @@ import styles from "./quizz.module.scss";
 
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
-import { getTrivia } from "@org/services";
+import { getQuestions, getTrivia } from "@org/services";
 import { CodeLabel, DEFAULT_DIFFICULTIES } from "@org/utils";
+import { QuestionRow } from "@org/shared";
 import { useEffect, useState } from "react";
+import { Question } from "@org/models";
 
 export function Quizz() {
     const DIFFICULTIES: Array<CodeLabel> = DEFAULT_DIFFICULTIES;
@@ -13,11 +15,14 @@ export function Quizz() {
     const [trivias, setTrivias] = useState(null);
     const [selectedTrivia, setSelectedTrivia] = useState(null);
 
+    const [questions, setQuestions] = useState(null);
+
+    const [pending, setPending] = useState(false);
+
     useEffect(() => {
         let mounted = true;
         getTrivia().then((items) => {
             if (mounted) {
-                console.log(items);
                 setTrivias(items as any);
             }
         });
@@ -26,7 +31,14 @@ export function Quizz() {
         };
     }, []);
 
-    const submit = () => console.log(selectedTrivia, selectedDifficulty);
+    const submit = () => {
+        setPending(true);
+        getQuestions(selectedTrivia ?? 0, selectedDifficulty ?? "").then((items) => {
+            console.log(items);
+            setQuestions(items as any);
+            setPending(false);
+        });
+    };
 
     return (
         <div className={styles["container"]}>
@@ -49,7 +61,13 @@ export function Quizz() {
                 optionLabel="label"
                 onChange={(e) => setSelectedDifficulty(e.value)}
             />
-            <Button label="Go !" onClick={submit} />
+            <Button
+                label="Go !"
+                onClick={submit}
+                disabled={selectedDifficulty === null || selectedTrivia === null || pending}
+            />
+            <QuestionRow question={((questions ?? []) as Array<Question>)[0]} />
+            <pre>{JSON.stringify(((questions ?? []) as Array<Question>)[0])}</pre>
         </div>
     );
 }

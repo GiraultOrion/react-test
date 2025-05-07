@@ -20,8 +20,8 @@ export function Accueil() {
                 <i className="pi pi-arrow-left"></i>
             </p>
             <p>
-                C'est inspiré un projet que j'ai réaliser dans le cadre d'une certification Angular
-                et que j'ai porté en ReactJS
+                C'est inspiré d'un projet que j'ai réaliser dans le cadre d'une certification
+                Angular et que j'ai porté en ReactJS
             </p>
             <h3>Bonne chance !</h3>
         </div>
