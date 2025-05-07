@@ -1,0 +1,9 @@
+{
+    "name": "quizz",
+    "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "src/modules/features/quizz/src",
+    "projectType": "library",
+    "tags": [],
+    "// targets": "to see all targets run: nx show project quizz --web",
+    "targets": {}
+}

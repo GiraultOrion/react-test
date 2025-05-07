@@ -8,12 +8,12 @@ export abstract class ORG_ROUTES_INDEX {
         icon: "pi pi-home",
     };
 
-    public static readonly bureau: OrgRoute = {
-        path: "/bureau",
-        label: "Bureau",
-        key: "bureau",
-        icon: "pi pi-building",
+    public static readonly quizz: OrgRoute = {
+        path: "/quizz",
+        label: "Quizz",
+        key: "quizz",
+        icon: "pi pi-question",
     };
 }
 
-export const ORG_ROUTES: Array<OrgRoute> = [ORG_ROUTES_INDEX.accueil, ORG_ROUTES_INDEX.bureau];
+export const ORG_ROUTES: Array<OrgRoute> = [ORG_ROUTES_INDEX.accueil, ORG_ROUTES_INDEX.quizz];
