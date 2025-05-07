@@ -4,7 +4,7 @@ import { Footer } from "../footer/footer";
 
 export const Layout: ({ children }) => JSX.Element = ({ children }) => {
     return (
-        <div className="flex flex-column h-full w-full">
+        <div className="flex flex-column h-full w-full px-2">
             <div className="flex-none flex justify-content-center">
                 <NavMenu />
             </div>

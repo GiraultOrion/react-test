@@ -5,7 +5,7 @@ import { JSX } from "react";
 import { Layout, ORG_ROUTES_INDEX } from "@org/core";
 import { Route, Routes } from "react-router";
 import { Accueil } from "@org/accueil";
-import { Bureau } from "@org/bureau";
+import { Quizz } from "@org/quizz";
 
 export const App: () => JSX.Element = () => {
     return (
@@ -13,7 +13,7 @@ export const App: () => JSX.Element = () => {
             <Layout>
                 <Routes>
                     <Route path={ORG_ROUTES_INDEX.accueil.path} element={<Accueil />} />
-                    <Route path={ORG_ROUTES_INDEX.bureau.path} element={<Bureau />} />
+                    <Route path={ORG_ROUTES_INDEX.quizz.path} element={<Quizz />} />
                 </Routes>
             </Layout>
         </div>

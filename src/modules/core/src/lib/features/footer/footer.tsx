@@ -10,7 +10,7 @@ export const Footer: () => JSX.Element = () => {
         <div className="flex justify-content-between h-full w-full">
             <div></div>
             <div className="flex align-items-center">Angular c'est mieux &#169; 2025</div>
-            <div className="flex justify-content-between gap-2 my-2 mx-4">
+            <div className="flex justify-content-between gap-2 my-2">
                 <Button
                     icon="pi pi-facebook"
                     rounded
