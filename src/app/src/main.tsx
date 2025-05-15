@@ -1,8 +1,10 @@
 import { StrictMode } from "react";
-import * as ReactDOM from "react-dom/client";
-import App from "./app/app";
-import { PrimeReactProvider } from "primereact/api";
 import { BrowserRouter } from "react-router";
+
+import { PrimeReactProvider } from "primereact/api";
+import * as ReactDOM from "react-dom/client";
+
+import App from "./app/app";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 

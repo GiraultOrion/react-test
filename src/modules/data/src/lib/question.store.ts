@@ -1,6 +1,5 @@
+import { Answer, Question } from "@models";
 import { createStore, select, withProps } from "@ngneat/elf";
-
-import { Answer, Question } from "@org/models";
 
 interface QuestionStore {
     questions: Array<Question>;
@@ -19,7 +18,6 @@ export const addOrUpdateQuestions = (questions: Array<Question>) => {
         ...state,
         questions,
     }));
-    console.log(questionStore.getValue());
 };
 
 export const addAnswer = (questionId: number, answer: string) => {
@@ -28,7 +26,6 @@ export const addAnswer = (questionId: number, answer: string) => {
         ...state,
         answers: [...state.answers, { questionId, answer }],
     }));
-    console.log(questionStore.getValue());
 };
 
 export const removeAnswer = (questionId: number) => {
@@ -40,14 +37,23 @@ export const removeAnswer = (questionId: number) => {
             ...state,
             answers,
         }));
-        console.log(questionStore.getValue());
     }
 };
 
 export const getAnswer = (questionId: number) => {
-    console.log(questionStore.getValue());
     return questionStore.getValue().answers.find((q) => q.questionId === questionId);
 };
 
+export const correctAnswerCount = () => {
+    const questions = questionStore.getValue().questions;
+    const answers = questionStore.getValue().answers;
+    return answers.filter((a) => {
+        const question = questions.find((q) => q.id === a.questionId);
+        return a.answer === question?.correctAnswer;
+    }).length;
+};
+
+export const clearQuestionsStore = () =>
+    questionStore.update((state) => ({ ...state, answers: [], questions: [] }));
 export const answers$ = questionStore.pipe(select((state) => state.answers));
 export const questions$ = questionStore.pipe(select((state) => state.questions));

@@ -1,6 +1,8 @@
 import { NavLink } from "react-router";
+
+import { ORG_ROUTES_INDEX } from "@utils";
+
 import styles from "./accueil.module.scss";
-import { ORG_ROUTES_INDEX } from "@org/core";
 
 export function Accueil() {
     return (

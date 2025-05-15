@@ -1,15 +1,20 @@
-import styles from "./quizz.module.scss";
-
-import { Dropdown } from "primereact/dropdown";
-import { Button } from "primereact/button";
-import { getQuestions, getTrivia } from "@org/services";
-import { CodeLabel, DEFAULT_DIFFICULTIES } from "@org/utils";
-import { QuestionWrapper } from "@org/shared";
 import { useEffect, useState } from "react";
-import { addOrUpdateQuestions, questions$ } from "@org/data";
+import { useNavigate } from "react-router";
+
+import { addOrUpdateQuestions, questions$ } from "@data";
+import { getQuestions, getTrivia } from "@services";
+import { QuestionWrapper } from "@shared";
+import { CodeLabel, DEFAULT_DIFFICULTIES } from "@utils";
+import { ORG_ROUTES_INDEX } from "@utils";
+import { Button } from "primereact/button";
+import { Dropdown } from "primereact/dropdown";
 import { map } from "rxjs";
 
+import styles from "./quizz.module.scss";
+
 export function Quizz() {
+    const navigate = useNavigate();
+
     const DIFFICULTIES: Array<CodeLabel> = DEFAULT_DIFFICULTIES;
     const [selectedDifficulty, setSelectedDifficulty] = useState(null);
 
@@ -17,9 +22,9 @@ export function Quizz() {
     const [selectedTrivia, setSelectedTrivia] = useState(null);
 
     const [questions, setQuestions] = useState(null);
+    const [showQuestions, setShowQuestions] = useState(false);
 
     const [pending, setPending] = useState(false);
-    const [showQuestions, setShowQuestions] = useState(false);
 
     useEffect(() => {
         let mounted = true;
@@ -73,10 +78,10 @@ export function Quizz() {
                 onClick={submit}
                 disabled={selectedDifficulty === null || selectedTrivia === null || pending}
             />
+            {showQuestions && <QuestionWrapper questions={questions} showCorrectAnswer={false} />}
             {showQuestions && (
-                <QuestionWrapper questions={questions} highlightCorrectAnswer={false} />
+                <Button label="Valider" onClick={() => navigate(ORG_ROUTES_INDEX.results.path)} />
             )}
-            {showQuestions && <Button label="Valider" />}
         </div>
     );
 }

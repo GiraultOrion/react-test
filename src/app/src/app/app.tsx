@@ -1,12 +1,13 @@
 // Uncomment this line to use CSS modules
 // import styles from './app.module.scss';
-import { Accueil } from "@org/accueil";
-import { Layout, ORG_ROUTES_INDEX } from "@org/core";
-import { Quizz } from "@org/quizz";
 import { JSX } from "react";
 import { Route, Routes } from "react-router";
 
-import { Results } from "../modules/features/results/src";
+import { Accueil } from "@accueil";
+import { Layout } from "@core";
+import { Quizz } from "@quizz";
+import { Results } from "@results";
+import { ORG_ROUTES_INDEX } from "@utils";
 
 export const App: () => JSX.Element = () => {
     return (

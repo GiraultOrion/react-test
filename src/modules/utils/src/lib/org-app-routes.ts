@@ -1,4 +1,10 @@
-import { OrgRoute } from "../models";
+export interface OrgRoute {
+    path: string;
+    label: string;
+    key: string;
+    icon?: string;
+    hide?: boolean;
+}
 
 export abstract class ORG_ROUTES_INDEX {
     public static readonly accueil: OrgRoute = {
@@ -20,6 +26,7 @@ export abstract class ORG_ROUTES_INDEX {
         label: "Results",
         key: "results",
         icon: "pi pi-question",
+        hide: true,
     };
 }
 

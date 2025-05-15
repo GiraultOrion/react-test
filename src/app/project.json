@@ -1,0 +1,13 @@
+{
+    "name": "react-test",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "./src/app/src",
+    "projectType": "application",
+    "tags": ["type:application", "application:src/app/test-react", "scope:application"],
+    "// targets": "to see all targets run: nx show project react-test --web",
+    "targets": {
+        "react-test-full-app-lint": {
+            "command": "nx run-many --t lint --projects=tag:type:utilities,tag:type:domain,tag:type:state-management,tag:type:ui,tag:type:feature,tag:type:application --parallel"
+        }
+    }
+}

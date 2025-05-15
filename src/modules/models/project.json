@@ -3,7 +3,7 @@
     "$schema": "../../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "src/modules/models/src",
     "projectType": "library",
-    "tags": ["type:domaine", "application:compere", "scope:shared"],
+    "tags": ["type:domain-utils", "application:react-test", "scope:shared"],
     "// targets": "to see all targets run: nx show project models --web",
     "targets": {}
 }

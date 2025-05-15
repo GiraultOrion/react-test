@@ -1,6 +1,7 @@
 import { JSX } from "react";
-import { NavMenu } from "../menu/menu";
+
 import { Footer } from "../footer/footer";
+import { NavMenu } from "../menu/menu";
 
 export const Layout: ({ children }) => JSX.Element = ({ children }) => {
     return (

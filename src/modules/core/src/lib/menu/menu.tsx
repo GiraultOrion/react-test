@@ -1,8 +1,9 @@
 import { JSX } from "react";
-import { ORG_ROUTES } from "../../utils";
-import { TabMenu } from "primereact/tabmenu";
-import { MenuItem } from "primereact/menuitem";
 import { useLocation, useNavigate } from "react-router";
+
+import { ORG_ROUTES } from "@utils";
+import { MenuItem } from "primereact/menuitem";
+import { TabMenu } from "primereact/tabmenu";
 
 export const NavMenu: () => JSX.Element = () => {
     const navLinks: Array<MenuItem> = [];
@@ -12,7 +13,7 @@ export const NavMenu: () => JSX.Element = () => {
     let activeIndex = ORG_ROUTES.findIndex((r) => r.path === location.pathname);
     const setActiveIndex = (index: number) => (activeIndex = index);
 
-    ORG_ROUTES.forEach((l) =>
+    ORG_ROUTES.filter((l) => !l.hide).forEach((l) =>
         navLinks.push({
             label: l.label,
             icon: l.icon,

@@ -12,7 +12,6 @@
             "!{projectRoot}/src/test-setup.[jt]s",
             "!{projectRoot}/cypress/**/*",
             "!{projectRoot}/**/*.cy.[jt]s?(x)",
-            "!{projectRoot}/cypress.config.[jt]s",
             "!{projectRoot}/jest.config.[jt]s",
             "!{projectRoot}/test-setup.[jt]s"
         ],
@@ -54,10 +53,10 @@
         {
             "plugin": "@nx/cypress/plugin",
             "options": {
-                "targetName": "e2e",
+                "targetName": "react-test-e2e",
                 "openTargetName": "open-cypress",
                 "componentTestingTargetName": "component-test",
-                "ciTargetName": "e2e-ci"
+                "ciTargetName": "react-test-e2e-ci"
             }
         },
         {
@@ -65,10 +64,16 @@
             "options": {
                 "targetName": "test"
             }
+        },
+        {
+            "plugin": "@nx/playwright/plugin",
+            "options": {
+                "targetName": "react-test-e2e"
+            }
         }
     ],
     "targetDefaults": {
-        "e2e-ci--**/**": {
+        "react-test-e2e-ci--**/**": {
             "dependsOn": ["^build"]
         },
         "@nx/js:tsc": {
@@ -77,7 +82,6 @@
             "inputs": ["production", "^production"]
         }
     },
-    "defaultProject": "org",
     "generators": {
         "@nx/react": {
             "application": {
