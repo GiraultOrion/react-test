@@ -39,7 +39,7 @@ export function Quizz() {
             setPending(false);
         });
     };
-
+    
     return (
         <div className={styles["container"]}>
             <h1>Bienvenu dans mon super quizz !!</h1>
