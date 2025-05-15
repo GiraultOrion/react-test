@@ -3,6 +3,7 @@ import styles from "./accueil.module.scss";
 import { ORG_ROUTES_INDEX } from "@org/core";
 
 export function Accueil() {
+    console.log("et d'(autre dibouille");
     return (
         <div className={styles["container"]}>
             <h1>Bienvenu sur mon premier site en ReactJS !</h1>
