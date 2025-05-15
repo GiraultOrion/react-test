@@ -1,4 +1,9 @@
-export function QuestionRow({ question }) {
-    console.log("mon test");
-    return <div>{question?.question}</div>;
+import { Question } from "@org/models";
+
+export interface IQuestionRow {
+    question: Question;
+}
+
+export function QuestionRow(t: IQuestionRow) {
+    return <div>{t.question.question}</div>;
 }
