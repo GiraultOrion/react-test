@@ -17,8 +17,8 @@
         "paths": {
             "@menu": ["src/modules/menu"],
             "@org/accueil": ["src/modules/features/accueil/src/index.ts"],
-            "@org/bureau": ["src/modules/features/bureau/src/index.ts"],
             "@org/core": ["src/modules/core/src/index.ts"],
+            "@org/data": ["src/modules/data/src/index.ts"],
             "@org/models": ["src/modules/models/src/index.ts"],
             "@org/quizz": ["src/modules/features/quizz/src/index.ts"],
             "@org/services": ["src/modules/services/src/index.ts"],

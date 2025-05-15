@@ -8,4 +8,8 @@ export const getQuestions: (
 ) => Promise<Array<Question>> = async (trivia: number, difficulty: string) =>
     axios
         .get(`${API}/api.php?amount=5&type=multiple&category=${trivia}&difficulty=${difficulty}`)
-        .then((r) => r.data.results);
+        .then((r) =>
+            (r.data.results as Array<Question>).map((q, i) => {
+                return { ...q, id: i };
+            })
+        );

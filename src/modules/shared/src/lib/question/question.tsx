@@ -1,20 +1,24 @@
 import { useState } from "react";
 import styles from "./question.module.scss";
 
-export function QuestionRow({ question }) {
+import { addAnswer, removeAnswer } from "@org/data";
+
+export function QuestionRow({ question, highlightCorrectAnswer }) {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
 
-    const onAnswerClick = (id: number) => {
-        if (selectedAnswer === id) {
+    const onAnswerClick = (answer: string) => {
+        if (selectedAnswer === answer) {
             setSelectedAnswer(null);
+            removeAnswer(question.id);
         } else {
-            setSelectedAnswer(id as any);
+            setSelectedAnswer(answer as any);
+            addAnswer(question.id, answer);
         }
     };
 
-    const getQuestionCssClass = (id: number) => {
+    const getAnswerCssClass = (answer: string) => {
         let classes = "";
-        if (id === selectedAnswer) {
+        if (answer === selectedAnswer) {
             classes = `${styles.correctanswer}`;
         }
         return `${styles.answercontainer} ${styles.clickable} ${classes}`;
@@ -23,7 +27,7 @@ export function QuestionRow({ question }) {
     const answersContainers = [question.correct_answer, ...question.incorrect_answers].map(
         (a, i) => {
             return (
-                <div key={i} className={getQuestionCssClass(i)} onClick={() => onAnswerClick(i)}>
+                <div key={i} className={getAnswerCssClass(a)} onClick={() => onAnswerClick(a)}>
                     {a}
                 </div>
             );

@@ -4,8 +4,10 @@ import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
 import { getQuestions, getTrivia } from "@org/services";
 import { CodeLabel, DEFAULT_DIFFICULTIES } from "@org/utils";
-import { QuestionRow, QuestionWrapper } from "@org/shared";
-import { ReactElement, useEffect, useState } from "react";
+import { QuestionWrapper } from "@org/shared";
+import { useEffect, useState } from "react";
+import { addOrUpdateQuestions, questions$ } from "@org/data";
+import { map } from "rxjs";
 
 export function Quizz() {
     const DIFFICULTIES: Array<CodeLabel> = DEFAULT_DIFFICULTIES;
@@ -19,8 +21,6 @@ export function Quizz() {
     const [pending, setPending] = useState(false);
     const [showQuestions, setShowQuestions] = useState(false);
 
-    const qList: Array<ReactElement> = [];
-
     useEffect(() => {
         let mounted = true;
         getTrivia().then((items) => {
@@ -33,20 +33,23 @@ export function Quizz() {
         };
     }, []);
 
+    useEffect(() => {
+        questions$.subscribe((questions) => setQuestions(questions as any));
+        questions$.pipe(map((q) => q.length > 0)).subscribe((show) => setShowQuestions(show));
+    });
+
     const submit = () => {
         setPending(true);
-        setShowQuestions(false);
+        addOrUpdateQuestions([]);
         getQuestions(selectedTrivia ?? 0, selectedDifficulty ?? "").then((items) => {
-            setQuestions(items as any);
-            (items ?? []).forEach((i) => qList.push(<QuestionRow question={i} />));
+            addOrUpdateQuestions(items);
             setPending(false);
-            setShowQuestions(true);
         });
     };
 
     return (
         <div className={styles["container"]}>
-            <h1>Bienvenu dans mon super quizz !!</h1>
+            <h1>Le Quizz</h1>
             <Dropdown
                 className="w-4 mr-2"
                 placeholder="Sélectionner un sujet"
@@ -70,7 +73,10 @@ export function Quizz() {
                 onClick={submit}
                 disabled={selectedDifficulty === null || selectedTrivia === null || pending}
             />
-            {showQuestions && <QuestionWrapper questions={questions} />}
+            {showQuestions && (
+                <QuestionWrapper questions={questions} highlightCorrectAnswer={false} />
+            )}
+            {showQuestions && <Button label="Valider" />}
         </div>
     );
 }
