@@ -4,9 +4,8 @@ import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
 import { getQuestions, getTrivia } from "@org/services";
 import { CodeLabel, DEFAULT_DIFFICULTIES } from "@org/utils";
-import { QuestionRow } from "@org/shared";
-import { useEffect, useState } from "react";
-import { Question } from "@org/models";
+import { QuestionRow, QuestionWrapper } from "@org/shared";
+import { ReactElement, useEffect, useState } from "react";
 
 export function Quizz() {
     const DIFFICULTIES: Array<CodeLabel> = DEFAULT_DIFFICULTIES;
@@ -18,6 +17,9 @@ export function Quizz() {
     const [questions, setQuestions] = useState(null);
 
     const [pending, setPending] = useState(false);
+    const [showQuestions, setShowQuestions] = useState(false);
+
+    const qList: Array<ReactElement> = [];
 
     useEffect(() => {
         let mounted = true;
@@ -33,10 +35,12 @@ export function Quizz() {
 
     const submit = () => {
         setPending(true);
+        setShowQuestions(false);
         getQuestions(selectedTrivia ?? 0, selectedDifficulty ?? "").then((items) => {
-            console.log(items);
             setQuestions(items as any);
+            (items ?? []).forEach((i) => qList.push(<QuestionRow question={i} />));
             setPending(false);
+            setShowQuestions(true);
         });
     };
 
@@ -66,8 +70,7 @@ export function Quizz() {
                 onClick={submit}
                 disabled={selectedDifficulty === null || selectedTrivia === null || pending}
             />
-            <QuestionRow question={((questions ?? []) as Array<Question>)[0]} />
-            <pre>{JSON.stringify(((questions ?? []) as Array<Question>)[0])}</pre>
+            {showQuestions && <QuestionWrapper questions={questions} />}
         </div>
     );
 }

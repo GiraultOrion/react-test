@@ -1,0 +1,37 @@
+.questioncontainer {
+    padding: 1rem;
+}
+
+.questionheader {
+    font-size: 1.5em;
+}
+
+.answerslistcontainer {
+    display: flex;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.answercontainer {
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.clickable {
+    cursor: pointer;
+    &:hover:not(.correct-answer) {
+        background-color: lightgrey;
+    }
+}
+
+.correctanswer {
+    background-color: green;
+    color: white;
+}
+
+.wrong-answer {
+    background-color: red;
+    color: white;
+}
