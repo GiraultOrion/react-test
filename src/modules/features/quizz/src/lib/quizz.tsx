@@ -40,6 +40,8 @@ export function Quizz() {
         });
     };
 
+    console.log("et ici aussi je mets une truc");
+
     return (
         <div className={styles["container"]}>
             <h1>Bienvenu dans mon super quizz !!</h1>
