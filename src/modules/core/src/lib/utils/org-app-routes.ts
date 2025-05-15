@@ -14,6 +14,17 @@ export abstract class ORG_ROUTES_INDEX {
         key: "quizz",
         icon: "pi pi-question",
     };
+
+    public static readonly results: OrgRoute = {
+        path: "/results",
+        label: "Results",
+        key: "results",
+        icon: "pi pi-question",
+    };
 }
 
-export const ORG_ROUTES: Array<OrgRoute> = [ORG_ROUTES_INDEX.accueil, ORG_ROUTES_INDEX.quizz];
+export const ORG_ROUTES: Array<OrgRoute> = [
+    ORG_ROUTES_INDEX.accueil,
+    ORG_ROUTES_INDEX.quizz,
+    ORG_ROUTES_INDEX.results,
+];

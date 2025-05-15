@@ -21,6 +21,7 @@
             "@org/data": ["src/modules/data/src/index.ts"],
             "@org/models": ["src/modules/models/src/index.ts"],
             "@org/quizz": ["src/modules/features/quizz/src/index.ts"],
+            "@org/results": ["src/modules/features/results/src/index.ts"],
             "@org/services": ["src/modules/services/src/index.ts"],
             "@org/shared": ["src/modules/shared/src/index.ts"],
             "@org/utils": ["src/modules/utils/src/index.ts"]

@@ -6,6 +6,8 @@ import { Quizz } from "@org/quizz";
 import { JSX } from "react";
 import { Route, Routes } from "react-router";
 
+import { Results } from "../modules/features/results/src";
+
 export const App: () => JSX.Element = () => {
     return (
         <div className="h-full w-full">
@@ -13,6 +15,7 @@ export const App: () => JSX.Element = () => {
                 <Routes>
                     <Route path={ORG_ROUTES_INDEX.accueil.path} element={<Accueil />} />
                     <Route path={ORG_ROUTES_INDEX.quizz.path} element={<Quizz />} />
+                    <Route path={ORG_ROUTES_INDEX.results.path} element={<Results />} />
                 </Routes>
             </Layout>
         </div>
