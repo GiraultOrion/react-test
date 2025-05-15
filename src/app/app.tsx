@@ -7,6 +7,7 @@ import { JSX } from "react";
 import { Route, Routes } from "react-router";
 
 export const App: () => JSX.Element = () => {
+    console.log("et d'autre modif");
     return (
         <div className="h-full w-full">
             <Layout>

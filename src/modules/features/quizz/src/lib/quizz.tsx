@@ -41,6 +41,7 @@ export function Quizz() {
     };
 
     console.log("je fais des modif sur A");
+    console.log("je fais des modifs sur B");
 
     return (
         <div className={styles["container"]}>
