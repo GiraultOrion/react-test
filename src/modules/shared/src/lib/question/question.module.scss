@@ -21,7 +21,7 @@
 
 .clickable {
     cursor: pointer;
-    &:hover:not(.correct-answer) {
+    &:hover:not(.correctanswer) {
         background-color: lightgrey;
     }
 }
