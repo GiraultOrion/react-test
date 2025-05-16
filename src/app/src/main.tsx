@@ -1,5 +1,4 @@
 import { StrictMode } from "react";
-import { BrowserRouter } from "react-router";
 
 import { PrimeReactProvider } from "primereact/api";
 import * as ReactDOM from "react-dom/client";
@@ -11,9 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
     <StrictMode>
         <PrimeReactProvider>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
+            <App />
         </PrimeReactProvider>
     </StrictMode>
 );
