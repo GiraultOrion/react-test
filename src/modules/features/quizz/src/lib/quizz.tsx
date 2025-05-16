@@ -78,7 +78,9 @@ export function Quizz() {
                 onClick={submit}
                 disabled={selectedDifficulty === null || selectedTrivia === null || pending}
             />
-            {showQuestions && <QuestionWrapper questions={questions} showCorrectAnswer={false} />}
+            {showQuestions && (
+                <QuestionWrapper questions={questions ?? []} showCorrectAnswer={false} />
+            )}
             {showQuestions && (
                 <Button label="Valider" onClick={() => navigate(ORG_ROUTES_INDEX.results.path)} />
             )}

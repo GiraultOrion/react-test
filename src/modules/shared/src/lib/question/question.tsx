@@ -1,15 +1,22 @@
 import { useState } from "react";
 
 import { addAnswer, getAnswer, removeAnswer } from "@data";
+import { Question } from "@models";
 
 import styles from "./question.module.scss";
 
-export function QuestionRow({ question, showCorrectAnswer }) {
+interface QuestionRowInputs {
+    question: Question;
+    showCorrectAnswer: boolean;
+}
+
+export function QuestionRow({ question, showCorrectAnswer }: QuestionRowInputs) {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
 
     const onAnswerClick = (answer: string) => {
         if (!showCorrectAnswer) {
             if (selectedAnswer === answer) {
+                setSelectedAnswer(null);
                 removeAnswer(question.id);
             } else {
                 setSelectedAnswer(answer as any);
