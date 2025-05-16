@@ -3,7 +3,7 @@
     "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "src/modules/features/accueil/src",
     "projectType": "library",
-    "tags": [],
+    "tags": ["type:feature", "application:test-react", "scope:shared"],
     "// targets": "to see all targets run: nx show project accueil --web",
     "targets": {}
 }

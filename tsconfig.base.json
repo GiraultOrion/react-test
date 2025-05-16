@@ -16,10 +16,16 @@
         "baseUrl": ".",
         "paths": {
             "@menu": ["src/modules/menu"],
-            "@org/accueil": ["src/modules/features/accueil/src/index.ts"],
-            "@org/bureau": ["src/modules/features/bureau/src/index.ts"],
-            "@org/core": ["src/modules/core/src/index.ts"],
-            "@org/utils": ["src/modules/utils/src/index.ts"]
+            "@accueil": ["src/modules/features/accueil/src/index.ts"],
+            "@core": ["src/modules/core/src/index.ts"],
+            "@data": ["src/modules/data/src/index.ts"],
+            "@models": ["src/modules/models/src/index.ts"],
+            "@quizz": ["src/modules/features/quizz/src/index.ts"],
+            "@results": ["src/modules/features/results/src/index.ts"],
+            "@services": ["src/modules/services/src/index.ts"],
+            "@shared": ["src/modules/shared/src/index.ts"],
+            "@utils": ["src/modules/utils/src/index.ts"],
+            "@config": ["src/config/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]

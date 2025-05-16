@@ -3,17 +3,6 @@
     "$schema": "../../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "src/modules/utils/src",
     "projectType": "library",
-    "tags": [],
-    "targets": {
-        "build": {
-            "executor": "@nx/js:tsc",
-            "outputs": ["{options.outputPath}"],
-            "options": {
-                "outputPath": "dist/src/modules/utils",
-                "main": "src/modules/utils/src/index.ts",
-                "tsConfig": "src/modules/utils/tsconfig.lib.json",
-                "assets": ["src/modules/utils/*.md"]
-            }
-        }
-    }
+    "tags": ["type:utilities", "application:test-react", "scope:shared"],
+    "targets": {}
 }
