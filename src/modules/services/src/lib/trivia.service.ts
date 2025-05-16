@@ -1,7 +1,8 @@
-import axios from "axios";
-
+/* eslint-disable */
+/* tslint-disable */
 import { API } from "@config";
-import { Trivia } from "@models";
+import axios, { AxiosResponse } from "axios";
+import { from, Observable } from "rxjs";
 
-export const getTrivia: () => Promise<Array<Trivia>> = async () =>
-    axios.get(API + "/api_category.php").then((d) => d.data.trivia_categories);
+export const getTrivia: () => Observable<AxiosResponse> = () =>
+    from(axios.get(API + "/api_category.php"));

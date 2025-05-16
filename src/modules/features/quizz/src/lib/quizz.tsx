@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-import { addOrUpdateQuestions, questions$ } from "@data";
-import { getQuestions, getTrivia } from "@services";
+import { fetchQuestions, fetchTrivias, questions$, trivias$ } from "@data";
 import { QuestionWrapper } from "@shared";
 import { CodeLabel, DEFAULT_DIFFICULTIES } from "@utils";
 import { ORG_ROUTES_INDEX } from "@utils";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
-import { map } from "rxjs";
+import { filter, map, take } from "rxjs";
 
 import styles from "./quizz.module.scss";
 
@@ -28,28 +27,29 @@ export function Quizz() {
 
     useEffect(() => {
         let mounted = true;
-        getTrivia().then((items) => {
-            if (mounted) {
-                setTrivias(items as any);
-            }
-        });
+        fetchTrivias()
+            .pipe(
+                take(1),
+                filter(() => mounted)
+            )
+            .subscribe();
         return () => {
             mounted = false;
         };
     }, []);
 
     useEffect(() => {
+        trivias$.pipe(take(1)).subscribe((trivias) => setTrivias(trivias as any));
+
         questions$.subscribe((questions) => setQuestions(questions as any));
         questions$.pipe(map((q) => q.length > 0)).subscribe((show) => setShowQuestions(show));
     });
 
     const submit = () => {
         setPending(true);
-        addOrUpdateQuestions([]);
-        getQuestions(selectedTrivia ?? 0, selectedDifficulty ?? "").then((items) => {
-            addOrUpdateQuestions(items);
-            setPending(false);
-        });
+        fetchQuestions(selectedTrivia ?? 0, selectedDifficulty ?? "")
+            .pipe(take(1))
+            .subscribe(() => setPending(false));
     };
 
     return (

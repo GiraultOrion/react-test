@@ -1,1 +1,2 @@
-export * from "./lib/question.store";
+export * from "./lib/question";
+export * from "./lib/trivias";

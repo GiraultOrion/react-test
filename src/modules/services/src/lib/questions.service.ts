@@ -1,23 +1,15 @@
-import { Question } from "@models";
+/* eslint-disable */
+/* tslint-disable */
 import { API } from "@config";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import { from, Observable } from "rxjs";
 
-export const getQuestions: (
+export const getQuestions: (trivia: number, difficulty: string) => Observable<AxiosResponse> = (
     trivia: number,
     difficulty: string
-) => Promise<Array<Question>> = async (trivia: number, difficulty: string) =>
-    axios
-        .get(`${API}/api.php?amount=5&type=multiple&category=${trivia}&difficulty=${difficulty}`)
-        .then((r) =>
-            (r.data.results as Array<any>).map((q, i) => {
-                return {
-                    id: i,
-                    category: q.category,
-                    correctAnswer: q.correct_answer,
-                    difficulty: q.difficulty,
-                    incorrectAnswers: q.incorrect_answers as Array<string>,
-                    question: q.question,
-                    type: q.type,
-                } as Question;
-            })
-        );
+) =>
+    from(
+        axios.get(
+            `${API}/api.php?amount=5&type=multiple&category=${trivia}&difficulty=${difficulty}`
+        )
+    );
