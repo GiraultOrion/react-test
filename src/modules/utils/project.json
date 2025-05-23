@@ -3,6 +3,6 @@
     "$schema": "../../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "src/modules/utils/src",
     "projectType": "library",
-    "tags": ["type:utilities", "application:test-react", "scope:shared"],
+    "tags": ["type:utilities", "application:react-test", "scope:shared"],
     "targets": {}
 }

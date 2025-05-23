@@ -4,7 +4,7 @@
     "projectType": "application",
     "sourceRoot": "src/app-e2e/src",
     "tags": [],
-    "implicitDependencies": ["@react-test/source"],
+    "implicitDependencies": ["react-test-workspace"],
     "// targets": "to see all targets run: nx show project react-test-e2e --web",
     "targets": {}
 }
